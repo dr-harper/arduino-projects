@@ -29,7 +29,7 @@
 | [LED Panel](#led-panel) | ESP32-C3 Super Mini | 8x32 WS2812B (256) | Clock display, games, 17 effects |
 | [LED Tie](#led-tie) | ESP8266 (Wemos D1 Mini) | 70x WS2812B + OLED | Wearable, scrolling text, 14 modes |
 | [AI Camera](#ai-camera) | XIAO ESP32S3 Sense | - | On-device ML image classification |
-| [Carbon Intensity](#carbon-intensity-leds) | ESP8266 | 10x WS2812B | Early experiment (skeleton) |
+| [Carbon Intensity](#carbon-intensity-leds) | ESP8266 | 10x WS2812B | WiFi-connected UK grid carbon intensity visualiser |
 
 ---
 
@@ -219,7 +219,11 @@ cd ai_camera/tools && python3 generate_model.py
 
 ## Carbon Intensity LEDs
 
-An early experiment — an ESP8266 with 10 LEDs intended to visualise UK grid carbon intensity. Currently just a skeleton with WiFiManager setup.
+> A WiFi-connected LED strip that visualises UK grid carbon intensity in real time — an early project and the one that kicked off this whole collection.
+
+**Hardware:** ESP8266 + 10x WS2812B LEDs
+
+*Note: The current code is a simplified version with just the WiFi setup. The full carbon intensity logic was in an earlier iteration.*
 
 ---
 
