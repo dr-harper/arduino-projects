@@ -29,7 +29,7 @@
 | [LED Panel](#led-panel) | ESP32-C3 Super Mini | 8x32 WS2812B (256) | Clock display, games, 17 effects |
 | [LED Tie](#led-tie) | ESP8266 (Wemos D1 Mini) | 70x WS2812B + OLED | Wearable, scrolling text, 14 modes |
 | [AI Camera](#ai-camera) | XIAO ESP32S3 Sense | - | On-device ML image classification |
-| [Carbon Intensity](#carbon-intensity-leds) | ESP8266 | 10x WS2812B | WiFi-connected UK grid carbon intensity visualiser |
+| [Carbon Intensity](#carbon-intensity-leds) | ESP8266 | 35x WS2812B | Queries UK Carbon Intensity API, colour-maps to LEDs |
 
 ---
 
@@ -219,11 +219,30 @@ cd ai_camera/tools && python3 generate_model.py
 
 ## Carbon Intensity LEDs
 
-> A WiFi-connected LED strip that visualises UK grid carbon intensity in real time — an early project and the one that kicked off this whole collection.
+> A WiFi-connected LED strip that visualises UK grid carbon intensity in real time — the first project in this collection and the one that kicked it all off.
 
-**Hardware:** ESP8266 + 10x WS2812B LEDs
+<!-- TODO: Add photo -->
+<!-- <p align="center"><img src="docs/images/carbon_intensity.jpg" width="500"></p> -->
 
-*Note: The current code is a simplified version with just the WiFi setup. The full carbon intensity logic was in an earlier iteration.*
+**Hardware:** ESP8266 + 35x WS2812B LEDs
+
+<details>
+<summary><strong>Features</strong></summary>
+
+- Queries the [UK Carbon Intensity API](https://carbonintensity.org.uk/) over HTTPS
+- Maps intensity level to LED colour: green (very low), lime (low), yellow (moderate), orange (high), red (very high)
+- WiFiManager captive portal for WiFi setup
+- Purple flash on boot, rainbow sweep on successful connection
+- Polls every 30 seconds with a 1-minute loop delay
+
+</details>
+
+<details>
+<summary><strong>Libraries</strong></summary>
+
+- FastLED, WiFiManager (tzapu), ArduinoJson, ESP8266HTTPClient
+
+</details>
 
 ---
 
@@ -244,7 +263,7 @@ Install via the Arduino Library Manager or `arduino-cli lib install`:
 | [Adafruit NeoPixel](https://github.com/adafruit/Adafruit_NeoPixel) | All projects |
 | [WiFiManager](https://github.com/tzapu/WiFiManager) (tzapu) | All projects |
 | [PubSubClient](https://github.com/knolleary/pubsubclient) | night_light, led_grid |
-| [ArduinoJson](https://github.com/bblanchon/ArduinoJson) | led_grid, led_panel |
+| [ArduinoJson](https://github.com/bblanchon/ArduinoJson) | led_grid, led_panel, carbon_intensity |
 | [WebSockets](https://github.com/Links2004/arduinoWebSockets) | led_grid, led_panel |
 | [Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306) | led_tie |
 | [Adafruit GFX](https://github.com/adafruit/Adafruit-GFX-Library) | led_tie |
